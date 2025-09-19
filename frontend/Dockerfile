@@ -3,7 +3,7 @@ FROM node:20-alpine as build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-COPY --from=build frontend/dist/frontend/browser ./dist/out
+COPY --from=build app/dist/frontend/browser ./dist/frontend 
 # Pass API_URL at build time
 ARG API_URL
 RUN echo "export const environment = { production: true, apiUrl: '${API_URL}' };" \
